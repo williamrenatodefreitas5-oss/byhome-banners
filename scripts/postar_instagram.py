@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 """Publica 1 post de categoria no Instagram (By Home Technology).
 
-Fluxo: le data/links.json -> escolhe a categoria do horario -> gera legenda com a
-Claude -> cria o container de midia -> espera ficar pronto -> publica.
+Fluxo: le data/links.json -> escolhe a categoria do horario -> pega legenda pronta de
+data/legendas.json -> cria o container de midia -> espera ficar pronto -> publica.
 
 Somente biblioteca padrao do Python. Chaves vem de variaveis de ambiente (GitHub Secrets).
 
 Variaveis:
   IG_USER_ID, META_ACCESS_TOKEN     obrigatorias para publicar
-  ANTHROPIC_API_KEY                 opcional (sem ela, usa legenda padrao)
-  ANTHROPIC_MODEL                   opcional (padrao claude-haiku-4-5-20251001)
   IG_GRAPH_HOST                     opcional (padrao graph.instagram.com)
   DRY_RUN=1                         simula, nao publica
   CATEGORIA=<id>                    forca uma categoria (ex.: motos)
@@ -73,36 +71,17 @@ def legenda_padrao(cat, cfg):
 
 
 def gerar_legenda(cat, cfg):
-    chave = os.environ.get("ANTHROPIC_API_KEY")
-    if not chave:
-        aviso("ANTHROPIC_API_KEY ausente: usando legenda padrao.")
-        return legenda_padrao(cat, cfg)
-    modelo = os.environ.get("ANTHROPIC_MODEL", "claude-haiku-4-5-20251001")
-    sistema = (
-        "Voce e redator de marketing de afiliados brasileiro. Responda APENAS com JSON valido, "
-        'sem markdown, no formato {"legenda":"..."}. A legenda tem ate 4 linhas, tom envolvente, '
-        "comeca com um gancho em MAIUSCULAS, chama para o link na bio e termina com ate 5 hashtags. "
-        "Nao invente precos, descontos, cupons nem nomes de produtos especificos."
-    )
-    usuario = (
-        f"Categoria: {cat['nome']}. Descricao: {cat['sub']}. "
-        f"Marca: {cfg['marca']} ({cfg['instagram']})."
-    )
+    """Escolhe uma legenda pronta de data/legendas.json (escritas com a Claude no chat)."""
     try:
-        r = http_json(
-            "https://api.anthropic.com/v1/messages",
-            {"model": modelo, "max_tokens": 400, "system": sistema,
-             "messages": [{"role": "user", "content": usuario}]},
-            {"x-api-key": chave, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-        )
-        texto = r["content"][0]["text"].replace("```json", "").replace("```", "").strip()
-        legenda = json.loads(texto)["legenda"].strip()
-        if not legenda:
-            raise ValueError("legenda vazia")
-        return legenda
-    except Exception as e:  # sem creditos, rede, formato inesperado...
-        aviso(f"Falha ao gerar legenda com a Claude ({e}). Usando legenda padrao.")
+        with open(os.path.join(RAIZ, "data", "legendas.json"), encoding="utf-8") as f:
+            opcoes = json.load(f).get(cat["id"], [])
+    except Exception as e:
+        aviso(f"legendas.json ilegivel ({e}).")
+        opcoes = []
+    if not opcoes:
         return legenda_padrao(cat, cfg)
+    dia = datetime.now(BRT).timetuple().tm_yday
+    return opcoes[dia % len(opcoes)]
 
 
 def publicar(imagem_url, legenda):
