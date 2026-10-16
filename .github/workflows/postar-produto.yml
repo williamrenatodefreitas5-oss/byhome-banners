@@ -1,0 +1,61 @@
+name: Postar produto no Instagram (3x ao dia)
+
+on:
+  schedule:
+    - cron: "0 9 * * *"    # 06:00 Brasilia
+    - cron: "30 14 * * *"  # 11:30
+    - cron: "0 20 * * *"   # 17:00
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Simular (nao publica)"
+        type: boolean
+        default: true
+      produto:
+        description: "Forcar produto (id de data/produtos.json). Vazio = proximo da fila"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: postar-produto
+  cancel-in-progress: false
+
+jobs:
+  postar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pillow
+      - name: Preparar card e pagina de ofertas
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+          PRODUTO: ${{ github.event.inputs.produto }}
+        run: |
+          python scripts/postar_produto.py preparar
+          python scripts/gerar_pagina.py
+      - name: Enviar card e pagina para o repositorio
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "byhome-bot"
+          git config user.email "byhome-bot@users.noreply.github.com"
+          git add cards docs
+          git diff --cached --quiet || (git commit -m "Atualiza card e pagina de ofertas" && git pull --rebase -q && git push -q)
+      - name: Publicar no Instagram
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+          PRODUTO: ${{ github.event.inputs.produto }}
+        run: python scripts/postar_produto.py publicar
+      - name: Registrar produto postado
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git add data/postados.json
+          git diff --cached --quiet || (git commit -m "Registra produto postado" && git pull --rebase -q && git push -q)
