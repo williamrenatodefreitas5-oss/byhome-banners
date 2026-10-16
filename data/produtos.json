@@ -1,6 +1,6 @@
 {
  "coletado_em": "2026-10-16",
- "observacao": "Precos e parcelas conforme CSV/pagina da Shopee em 16/10/2026; podem mudar.",
+ "observacao": "Precos e parcelas conforme CSV/pagina da Shopee em 16/10/2026; podem mudar. Somente categorias em 'categorias_ativas' ficam ativas (ativo=true).",
  "produtos": [
   {
    "id": "55260497129",
@@ -42,7 +42,7 @@
    "parcela": "7x R$5,61",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-81ztc-mk6q54prolxd1c",
    "link": "https://s.shopee.com.br/Lo2qHyhbn",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "21897981294",
@@ -56,7 +56,7 @@
    "parcela": "11x R$6,20",
    "imagem": "https://down-br.img.susercontent.com/file/sg-11134201-7repr-m2v3wdwedwcb1f",
    "link": "https://s.shopee.com.br/qkJRCwnau",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "23099680478",
@@ -70,7 +70,7 @@
    "parcela": "12x R$19,27",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-820m9-msm4pbvbiolg9a",
    "link": "https://s.shopee.com.br/gQtEtxQvt",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "18699254225",
@@ -84,7 +84,7 @@
    "parcela": "7x R$6,39",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-820l8-ms0du9lcw8p1d3",
    "link": "https://s.shopee.com.br/1BN9povWv0",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "22094301885",
@@ -98,7 +98,7 @@
    "parcela": "7x R$6,41",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-820lm-mmj2atq4ltdz52",
    "link": "https://s.shopee.com.br/113jdVwAFz",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "58202483331",
@@ -126,7 +126,7 @@
    "parcela": "6x R$6,51",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-81ztc-mjhd3gtgx6o322",
    "link": "https://s.shopee.com.br/1Lga27uta5",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "58261247758",
@@ -140,7 +140,7 @@
    "parcela": "12x R$6,50",
    "imagem": "https://down-br.img.susercontent.com/file/sg-11134201-823py-mokpxs5ucl4y67",
    "link": "https://s.shopee.com.br/1qcqd2szZC",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "23195164105",
@@ -154,7 +154,7 @@
    "parcela": "8x R$6,29",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-820l4-mrdm8rujcv7r7a",
    "link": "https://s.shopee.com.br/1gJQQjtcuB",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "19899586753",
@@ -182,7 +182,7 @@
    "parcela": null,
    "imagem": "https://down-br.img.susercontent.com/file/sg-11134201-824hw-me1mqqajx1c73f",
    "link": "https://s.shopee.com.br/20wGpLsMEH",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "58255796599",
@@ -196,7 +196,7 @@
    "parcela": "8x R$6,31",
    "imagem": "https://down-br.img.susercontent.com/file/sg-11134201-825zw-ml52fkabgefhe1",
    "link": "https://s.shopee.com.br/2VsXQGqSDO",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "41018235013",
@@ -210,7 +210,7 @@
    "parcela": "12x R$12,60",
    "imagem": "https://down-br.img.susercontent.com/file/sg-11134201-824ij-mefom612h69td4",
    "link": "https://s.shopee.com.br/2LZ7Dxr5YN",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "22592875862",
@@ -238,7 +238,7 @@
    "parcela": "12x R$11,25",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m8k6ynton21d33",
    "link": "https://s.shopee.com.br/2gBxcZposT",
-   "ativo": true
+   "ativo": false
   },
   {
    "id": "58255159172",
@@ -266,7 +266,13 @@
    "parcela": "5x R$6,64",
    "imagem": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-meourptjpj4194",
    "link": "https://s.shopee.com.br/30oo1BoYCZ",
-   "ativo": true
+   "ativo": false
   }
+ ],
+ "categorias_ativas": [
+  "automotivo",
+  "casa tech",
+  "livros",
+  "tecnologia"
  ]
 }
