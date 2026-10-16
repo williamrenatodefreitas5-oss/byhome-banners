@@ -1,10 +1,12 @@
 name: Postar produto no Instagram (3x ao dia)
 
 on:
-  schedule:
-    - cron: "0 9 * * *"    # 06:00 Brasilia
-    - cron: "30 14 * * *"  # 11:30
-    - cron: "0 20 * * *"   # 17:00
+  # Horarios automaticos DESLIGADOS ate o teste manual passar.
+  # Para ligar, remova o "#" das 4 linhas abaixo.
+  # schedule:
+  #   - cron: "0 9 * * *"    # 06:00 Brasilia
+  #   - cron: "30 14 * * *"  # 11:30
+  #   - cron: "0 20 * * *"   # 17:00
   workflow_dispatch:
     inputs:
       dry_run:
