@@ -99,6 +99,44 @@ def card(x, W=1080, H=1350, saida=None, rodape="Link na bio · @byhome.technolog
     im.save(destino, optimize=True)
 
 
+def story(x, saida=None):
+    """Story 1080x1920. Zonas seguras: 250px no topo e 340px na base. Balao do link fica em branco (sticker)."""
+    W, H = 1080, 1920
+    im = Image.new("RGB", (W, H), BG); d = ImageDraw.Draw(im)
+    d.ellipse((W // 2 - 500, 330, W // 2 + 500, 1230), fill="#12303a")  # brilho suave atras da foto
+    d.text((W // 2, 300), "BY HOME", font=fonte(800, 30), fill=TEXTO, anchor="rs")
+    d.text((W // 2 + 12, 300), "TECHNOLOGY", font=fonte(800, 30), fill=CIANO, anchor="ls")
+    foto = baixar(x["imagem"]); S = 660
+    foto.thumbnail((S, S))
+    pan = Image.new("RGB", (S, S), "white"); pan.paste(foto, ((S - foto.width) // 2, (S - foto.height) // 2))
+    mask = Image.new("L", (S, S), 0); ImageDraw.Draw(mask).rounded_rectangle((0, 0, S, S), 36, fill=255)
+    im.paste(pan, ((W - S) // 2, 340), mask)
+    y = 340 + S + 34
+    f = fonte(800, 46)
+    for l in quebrar(d, x["nome"], f, 920):
+        d.text((W // 2, y), l, font=f, fill=TEXTO, anchor="ma"); y += 56
+    y += 10
+    if x.get("preco_de"):
+        de = "R$ " + x["preco_de"]; fd = fonte(500, 34)
+        d.text((W // 2, y), de, font=fd, fill=CINZA, anchor="ma")
+        w = d.textlength(de, font=fd); d.line((W // 2 - w / 2, y + 19, W // 2 + w / 2, y + 19), fill=CINZA, width=3)
+        y += 46
+    # balao do preco promocional
+    texto = "R$ " + x["preco"]; fp = fonte(800, 92)
+    tw = d.textlength(texto, font=fp); bw = tw + 90
+    d.rounded_rectangle((W // 2 - bw / 2, y, W // 2 + bw / 2, y + 128), 64, fill=LARANJA)
+    d.text((W // 2, y + 64), texto, font=fp, fill="#1A0E04", anchor="mm"); y += 148
+    if x.get("parcela"):
+        n, v = x["parcela"].split(" ", 1)
+        d.text((W // 2, y), f"ou {n} de {v}", font=fonte(500, 34), fill=CIANO, anchor="ma")
+    # balao do link em branco (o link entra pelo sticker do Instagram na hora de postar)
+    d.rounded_rectangle((W // 2 - 260, 1410, W // 2 + 260, 1510), 50, outline=CIANO, width=3)
+    d.text((W // 2, 1545), "essa promoção pode acabar a qualquer momento", font=fonte(500, 28), fill=CINZA, anchor="ma")
+    destino = saida or p("cards", f"{x['id']}-story.png")
+    os.makedirs(os.path.dirname(destino), exist_ok=True)
+    im.save(destino, optimize=True)
+
+
 def legenda(x):
     l = [f"{HOOKS.get(x['categoria'], 'ACHADO DO DIA')} 🔥", f"✅ {x['nome']}", f"🔥 POR R$ {x['preco']}"]
     if x.get("preco_de"): l[2] = f"🔥 DE R$ {x['preco_de']} POR R$ {x['preco']}"
