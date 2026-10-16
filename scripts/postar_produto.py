@@ -64,36 +64,39 @@ def quebrar(draw, txt, f, larg, maxl=2):
     return linhas
 
 
-def card(x):
-    W, H = 1080, 1350
+def card(x, W=1080, H=1350, saida=None, rodape="Link na bio · @byhome.technology"):
+    quad = H <= W  # versao quadrada (WhatsApp)
     im = Image.new("RGB", (W, H), BG); d = ImageDraw.Draw(im)
     d.rounded_rectangle((40, 40, W - 40, H - 40), 28, outline="#3A5666", width=2)
-    d.text((W // 2, 100), "BY HOME", font=fonte(800, 28), fill=TEXTO, anchor="rs")
-    d.text((W // 2 + 12, 100), "TECHNOLOGY", font=fonte(800, 28), fill=CIANO, anchor="ls")
+    topo = 84 if quad else 100
+    d.text((W // 2, topo), "BY HOME", font=fonte(800, 26 if quad else 28), fill=TEXTO, anchor="rs")
+    d.text((W // 2 + 12, topo), "TECHNOLOGY", font=fonte(800, 26 if quad else 28), fill=CIANO, anchor="ls")
     # foto do produto em painel branco
-    foto = baixar(x["imagem"]); S = 660
+    foto = baixar(x["imagem"]); S = 560 if quad else 660
     foto.thumbnail((S, S))
     pan = Image.new("RGB", (S, S), "white"); pan.paste(foto, ((S - foto.width) // 2, (S - foto.height) // 2))
     mask = Image.new("L", (S, S), 0); ImageDraw.Draw(mask).rounded_rectangle((0, 0, S, S), 32, fill=255)
-    im.paste(pan, ((W - S) // 2, 150), mask)
-    y = 150 + S + 30
-    f = fonte(800, 44)
+    y0 = 112 if quad else 150
+    im.paste(pan, ((W - S) // 2, y0), mask)
+    y = y0 + S + (22 if quad else 30)
+    f = fonte(800, 36 if quad else 44)
     for l in quebrar(d, x["nome"], f, 900):
-        d.text((W // 2, y), l, font=f, fill=TEXTO, anchor="ma"); y += 54
-    y += 14
+        d.text((W // 2, y), l, font=f, fill=TEXTO, anchor="ma"); y += 44 if quad else 54
+    y += 8 if quad else 14
     preco = "R$ " + x["preco"]
     if x.get("preco_de"):
-        de = "R$ " + x["preco_de"]; fd = fonte(500, 30)
+        de = "R$ " + x["preco_de"]; fd = fonte(500, 26 if quad else 30)
         d.text((W // 2, y), de, font=fd, fill=CINZA, anchor="ma")
-        w = d.textlength(de, font=fd); d.line((W // 2 - w / 2, y + 17, W // 2 + w / 2, y + 17), fill=CINZA, width=3)
-        y += 42
-    d.text((W // 2, y), preco, font=fonte(800, 80), fill=LARANJA, anchor="ma"); y += 96
+        w = d.textlength(de, font=fd); d.line((W // 2 - w / 2, y + 15, W // 2 + w / 2, y + 15), fill=CINZA, width=3)
+        y += 36 if quad else 42
+    d.text((W // 2, y), preco, font=fonte(800, 68 if quad else 80), fill=LARANJA, anchor="ma"); y += 82 if quad else 96
     if x.get("parcela"):
         n, v = x["parcela"].split(" ", 1)
-        d.text((W // 2, y), f"ou {n} de {v}", font=fonte(500, 32), fill=CIANO, anchor="ma")
-    d.text((W // 2, H - 100), "Link na bio · @byhome.technology", font=fonte(500, 26), fill=CINZA, anchor="ms")
-    os.makedirs(p("cards"), exist_ok=True)
-    im.save(p("cards", f"{x['id']}.png"), optimize=True)
+        d.text((W // 2, y), f"ou {n} de {v}", font=fonte(500, 28 if quad else 32), fill=CIANO, anchor="ma")
+    d.text((W // 2, H - (66 if quad else 100)), rodape, font=fonte(500, 24 if quad else 26), fill=CINZA, anchor="ms")
+    destino = saida or p("cards", f"{x['id']}.png")
+    os.makedirs(os.path.dirname(destino), exist_ok=True)
+    im.save(destino, optimize=True)
 
 
 def legenda(x):
