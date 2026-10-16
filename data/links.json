@@ -1,0 +1,20 @@
+{
+  "marca": "By Home Technology",
+  "instagram": "@byhome.technology",
+  "canal_whatsapp": "https://whatsapp.com/channel/0029VbE7aWlKgsO2z4BvAs3H",
+  "aviso_afiliado": "Links de afiliado: podemos receber comissao sem custo extra para voce.",
+  "categorias": [
+    { "id": "celulares", "nome": "Celulares e Dispositivos", "sub": "Ofertas em smartphones e gadgets", "link": "https://s.shopee.com.br/1AmDIv1qK", "imagem": "celulares-e-dispositivos.png" },
+    { "id": "audio", "nome": "Audio", "sub": "Fones, caixas de som e acessorios", "link": "https://s.shopee.com.br/BUCPbuOVN", "imagem": "audio.png" },
+    { "id": "games", "nome": "Jogos e Consoles", "sub": "Consoles, controles e acessorios gamer", "link": "https://s.shopee.com.br/LncbutlAQ", "imagem": "jogos-e-consoles.png" },
+    { "id": "computadores", "nome": "Computadores e Acessorios", "sub": "Notebooks, perifericos e pecas", "link": "https://s.shopee.com.br/W72oDt7pT", "imagem": "computadores-e-acessorios.png" },
+    { "id": "livros", "nome": "Livros e Revistas", "sub": "Leitura para todos os gostos", "link": "https://s.shopee.com.br/gQT0WsUUW", "imagem": "livros-e-revistas.png" },
+    { "id": "automoveis", "nome": "Automoveis", "sub": "Acessorios, pecas e itens para seu carro", "link": "https://s.shopee.com.br/qjtCprr9Z", "imagem": "automoveis.png" },
+    { "id": "casa-tech", "nome": "Casa e Decoracao Tech", "sub": "Tecnologia para deixar sua casa incrivel", "link": "https://s.shopee.com.br/113JP8rDoc", "imagem": "casa-e-decoracao-tech.png" },
+    { "id": "cameras", "nome": "Cameras e Drones", "sub": "Fotografia e video em outro nivel", "link": "https://s.shopee.com.br/1BMjbRqaTf", "imagem": "cameras-e-drones.png" },
+    { "id": "esportes", "nome": "Esportes e Atividades ao Ar Livre", "sub": "Equipamentos para esportes e atividades outdoor", "link": "https://s.shopee.com.br/8V9M2EravX", "imagem": "esportes-e-atividades-ao-ar-livre.png" },
+    { "id": "hobbies", "nome": "Hobbies e Colecoes", "sub": "Brinquedos, colecionaveis e hobbies para todas as idades", "link": "https://s.shopee.com.br/6VOHeacKgt", "imagem": "hobbies-e-colecoes.png" },
+    { "id": "motos", "nome": "Motocicletas", "sub": "Acessorios e itens para sua moto", "link": "https://s.shopee.com.br/gQUi32pLu", "imagem": "motocicletas.png" }
+  ],
+  "produtos": []
+}
