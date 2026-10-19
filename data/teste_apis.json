@@ -1,0 +1,138 @@
+{
+  "data": "2026-10-19",
+  "shopee_configurada": false,
+  "ml_token": false,
+  "amostras": [
+    {
+      "mkt": "ml",
+      "q": "Vonixx carro",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Cadillac carro",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Meguiar's carro",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Xiaomi casa inteligente",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Philips casa inteligente",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Positivo casa inteligente",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Logitech computador",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Razer computador",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Redragon computador",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Anker celular",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Baseus celular",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    },
+    {
+      "mkt": "ml",
+      "q": "Ugreen celular",
+      "info": {
+        "status": 403,
+        "erro": "forbidden"
+      },
+      "n": 0
+    }
+  ],
+  "erros": [
+    "SHOPEE_APP_ID/SHOPEE_SECRET nao configurados: Shopee ignorada",
+    "ml 'Vonixx carro': forbidden",
+    "ml 'Cadillac carro': forbidden",
+    "ml 'Meguiar's carro': forbidden",
+    "ml 'Xiaomi casa inteligente': forbidden",
+    "ml 'Philips casa inteligente': forbidden",
+    "ml 'Positivo casa inteligente': forbidden",
+    "ml 'Logitech computador': forbidden",
+    "ml 'Razer computador': forbidden",
+    "ml 'Redragon computador': forbidden",
+    "ml 'Anker celular': forbidden",
+    "ml 'Baseus celular': forbidden",
+    "ml 'Ugreen celular': forbidden",
+    "ml 'Samsung smartphone': forbidden",
+    "ml 'Motorola smartphone': forbidden",
+    "ml 'Xiaomi smartphone': forbidden",
+    "ml 'Intrínseca livro': forbidden",
+    "ml 'Rocco livro': forbidden",
+    "ml 'Companhia das Letras livro': forbidden"
+  ],
+  "itens_brutos": 0,
+  "aprovados": 0
+}
