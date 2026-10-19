@@ -89,10 +89,15 @@ def card(x, W=1080, H=1350, saida=None, rodape="Link na bio · @byhome.technolog
         d.text((W // 2, y), de, font=fd, fill=CINZA, anchor="ma")
         w = d.textlength(de, font=fd); d.line((W // 2 - w / 2, y + 15, W // 2 + w / 2, y + 15), fill=CINZA, width=3)
         y += 36 if quad else 42
+    elif x.get("prefixo"):
+        d.text((W // 2, y), x["prefixo"], font=fonte(500, 26 if quad else 30), fill=CINZA, anchor="ma"); y += 36 if quad else 42
     d.text((W // 2, y), preco, font=fonte(800, 68 if quad else 80), fill=LARANJA, anchor="ma"); y += 82 if quad else 96
+    linha = []
+    if x.get("nota"): linha.append(x["nota"])
     if x.get("parcela"):
-        n, v = x["parcela"].split(" ", 1)
-        d.text((W // 2, y), f"ou {n} de {v}", font=fonte(500, 28 if quad else 32), fill=CIANO, anchor="ma")
+        n, v = x["parcela"].split(" ", 1); linha.append(f"ou {n} de {v}")
+    if linha:
+        d.text((W // 2, y), " · ".join(linha), font=fonte(500, 28 if quad else 32), fill=CIANO, anchor="ma")
     d.text((W // 2, H - (66 if quad else 100)), rodape, font=fonte(500, 24 if quad else 26), fill=CINZA, anchor="ms")
     destino = saida or p("cards", f"{x['id']}.png")
     os.makedirs(os.path.dirname(destino), exist_ok=True)
@@ -121,14 +126,19 @@ def story(x, saida=None):
         d.text((W // 2, y), de, font=fd, fill=CINZA, anchor="ma")
         w = d.textlength(de, font=fd); d.line((W // 2 - w / 2, y + 19, W // 2 + w / 2, y + 19), fill=CINZA, width=3)
         y += 46
+    elif x.get("prefixo"):
+        d.text((W // 2, y), x["prefixo"], font=fonte(500, 34), fill=CINZA, anchor="ma"); y += 46
     # balao do preco promocional
     texto = "R$ " + x["preco"]; fp = fonte(800, 92)
     tw = d.textlength(texto, font=fp); bw = tw + 90
     d.rounded_rectangle((W // 2 - bw / 2, y, W // 2 + bw / 2, y + 128), 64, fill=LARANJA)
     d.text((W // 2, y + 64), texto, font=fp, fill="#1A0E04", anchor="mm"); y += 148
+    linha = []
+    if x.get("nota"): linha.append(x["nota"])
     if x.get("parcela"):
-        n, v = x["parcela"].split(" ", 1)
-        d.text((W // 2, y), f"ou {n} de {v}", font=fonte(500, 34), fill=CIANO, anchor="ma")
+        n, v = x["parcela"].split(" ", 1); linha.append(f"ou {n} de {v}")
+    if linha:
+        d.text((W // 2, y), " · ".join(linha), font=fonte(500, 34), fill=CIANO, anchor="ma")
     # balao do link em branco (o link entra pelo sticker do Instagram na hora de postar)
     d.rounded_rectangle((W // 2 - 260, 1410, W // 2 + 260, 1510), 50, outline=CIANO, width=3)
     d.text((W // 2, 1545), "essa promoção pode acabar a qualquer momento", font=fonte(500, 28), fill=CINZA, anchor="ma")

@@ -1,0 +1,37 @@
+{
+  "filtros": {
+    "vendas_min": 30,
+    "nota_min": 4.5,
+    "preco_min": 15,
+    "so_loja_oficial": false,
+    "max_por_marca": 3,
+    "historico_min_pontos": 3
+  },
+  "pesos": { "desconto": 0.35, "vendas": 0.25, "nota": 0.20, "oficial": 0.10, "comissao": 0.10 },
+  "categorias": {
+    "automotivo": {
+      "termo": "carro",
+      "marcas": ["Vonixx", "Cadillac", "Meguiar's", "Sonax", "3M", "Bosch", "Philips", "Osram", "Pioneer", "70mai", "Garmin", "Multilaser", "Castrol", "Mobil", "Wynn's", "Tekbond", "Michelin", "Ingco", "Stanley", "Tramontina", "Würth", "99 Soft", "Glaco", "Turtle Wax", "Armor All", "Chemical Guys", "Motul", "Valvoline", "Shell Helix", "Lubrax", "NGK", "Mahle", "Tecfil", "Fram", "Moura", "Dayco", "Cofap", "Black+Decker", "Makita", "DeWalt"]
+    },
+    "casa-tech": {
+      "termo": "casa inteligente",
+      "marcas": ["Xiaomi", "Philips", "Positivo", "Intelbras", "Elgin", "Multilaser", "TP-Link", "Echo Amazon", "Google Nest", "Govee", "Yeelight", "Eufy", "Roborock", "Electrolux", "Britânia", "Samsung", "LG", "Ecovacs", "Aqara", "Sonoff", "Wiz", "Ring", "Wyze", "Reolink", "Imou", "Ezviz", "Hikvision", "iRobot", "Dreame", "Nanoleaf", "IKEA", "Sonos", "Bose", "Edifier", "Marshall", "TCL", "Hisense", "Philco", "Mondial", "Oster"]
+    },
+    "tecnologia-pc": {
+      "termo": "computador",
+      "marcas": ["Logitech", "Razer", "Redragon", "HyperX", "Kingston", "SanDisk", "Samsung", "Lenovo", "Dell", "HP", "Microsoft", "TP-Link", "Multilaser", "Corsair", "Cooler Master", "ASUS", "Acer", "Gigabyte", "MSI", "Crucial", "Western Digital", "Seagate", "SteelSeries", "Elgato", "Keychron", "Rapoo", "Epson", "Canon", "Brother", "Mercusys", "Intelbras", "AOC"]
+    },
+    "celular-acessorios": {
+      "termo": "celular",
+      "marcas": ["Anker", "Baseus", "Ugreen", "Aukey", "Belkin", "Spigen", "OtterBox", "Nillkin", "Gshield", "Geonav", "Hrebos", "Mophie", "JBL", "Sony", "Xiaomi", "Samsung", "Motorola", "Apple", "Multilaser", "Philips"]
+    },
+    "celulares": {
+      "termo": "smartphone",
+      "marcas": ["Samsung", "Motorola", "Xiaomi", "Redmi", "POCO", "Apple iPhone", "Realme", "Honor", "Infinix", "Tecno", "Nubia", "ASUS"]
+    },
+    "livros": {
+      "termo": "livro",
+      "marcas": ["Intrínseca", "Rocco", "Companhia das Letras", "Planeta", "HarperCollins", "Sextante", "Arqueiro", "Record", "Globo Livros", "Alta Books", "Novatec", "Editora Gente", "Buzz", "Principis", "Ciranda Cultural", "DarkSide", "Panini", "Aleph", "Melhoramentos", "Mundo Cristão"]
+    }
+  }
+}
